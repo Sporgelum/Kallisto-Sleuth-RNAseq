@@ -1,0 +1,41 @@
+#First, create the index with the command following, or just exectute this script, also be sure to have installed parallel and moreutils for running in parallel for every core a job.
+#Also make sure to have downloaded the right cdna file and have it in .fa format and rename it as index.fa or call the command with the name wanted.
+
+#################################################
+kallisto index --make-unique -i index.fa.idx index.fa
+#################################################
+
+#Next step will be calling the script with the files for the paths and the jobscript which will be created 
+#To create the list, use the trick ls -1 *.fastq.gz and save it > editme, later modify it. adding at the beggining the sample_names... and launch the script. ls -1 *.fastq.gz > editme
+
+
+#Create the list of files positioning in the folder and run: 
+
+###############################################
+echo "$(ls $PWD/Sample_*/*.gz | sort -V)" >> fastq_files_paths.txt
+###############################################
+
+add the number of sample at the begginig of the file to recognize the files later.
+
+###############################################
+awk 'BEGIN{count=1; OFS="\t"}{print "sample"count++, $0}' fastq_files_paths.txt >> fastq_files_paths_samples.txt
+
+###############################################
+
+
+
+#Run the script.
+
+###############################################
+bash Make_job_list_kallisto.sh fastq_files_paths_samples.txt job_list_for_parallel.txt
+###############################################
+
+
+
+#And run the parallel task and the script log.
+#Notice the final tee.
+
+############################################### 
+parallel --progress --jobs 4 --joblog kallisto_joblog.txt < job_list_for_parallel.txt 2>&1 | tee final_report.txt
+###############################################
+
