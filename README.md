@@ -127,6 +127,8 @@ parallel --progress --jobs 4 --joblog kallisto_joblog.txt < job_list_for_paralle
 <center>
 DEG analysis
 </center>
+
+
 ____
 
 Run sleuth in R following the codes.
