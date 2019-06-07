@@ -30,9 +30,11 @@ ____
   + Quantification
   + DEG analysis
   
-\begin{center}
+<center>
 Index
-\end{center}>
+</center>
+
+
 ____
 
 
@@ -63,9 +65,10 @@ kallisto index --make-unique --index Danio_rerio_ensembl_cdna_fa_GRCz11.idx Dani
 
 Index will be obtained with the name __Danio_rerio_ensembl_cdna_fa_GRCz11.idx__ now move to the next step.
 
-\begin{center}
+<center>
 Quantification
-\end{center}>
+</center>
+
 ____
 
 
@@ -121,10 +124,9 @@ cd ~/Desktop/working_with_kallisto
 parallel --progress --jobs 4 --joblog kallisto_joblog.txt < job_list_for_parallel.txt 2>&1 | tee final_report.txt
 ```
 
-
-\begin{center}
+<center>
 DEG analysis
-\end{center}>
+</center>
 ____
 
 Run sleuth in R following the codes.
